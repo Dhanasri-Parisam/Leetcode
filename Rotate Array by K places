@@ -1,4 +1,8 @@
 #Rotate Array by K places
+Time Complexity:
+O(n): We are reversing parts of the array in linear time.
+Space Complexity:
+O(1): We are using a constant amount of extra space.
 
 Best optimal aproch:
 --------------------------------------------------------------------------------
