@@ -1,5 +1,10 @@
 # Count Maximum Consecutive One's in the array
 
+Brute force 
+Hash map ->O(n^3)
+Map->0(n log m)
+xor->O(n)
+
 #include <bits/stdc++.h>
 
 using namespace std;
