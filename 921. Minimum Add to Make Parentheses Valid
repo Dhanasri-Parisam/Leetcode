@@ -1,0 +1,37 @@
+cpp
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        stack<char> stk;
+        for(auto ch : s){
+            if(!stk.empty() && stk.top() == '(' && ch == ')'){
+                stk.pop();
+            }
+            else{
+                stk.push(ch);
+            }
+        }
+        return stk.size();
+    }
+};
+
+--------------------------------------------------------------------------------------------------------------------
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        int braket=0;
+        int imbalence=0;
+        for(auto i:s){
+            if(i=='('){
+                braket++;
+            }
+            else if(braket>0){
+                braket--;
+            }
+            else{
+                imbalence++;
+            }
+        }
+        return imbalence+braket;
+    }
+};
