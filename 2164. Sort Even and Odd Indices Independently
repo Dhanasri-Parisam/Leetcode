@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        int n=nums.size();
+         vector<int> evens, odds;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i % 2 == 0) {
+                evens.push_back(nums[i]);
+            } else {
+                odds.push_back(nums[i]);
+            }
+        }
+        sort(evens.begin(), evens.end());
+        sort(odds.begin(), odds.end(), greater<int>());
+        int evenIndex = 0, oddIndex = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i % 2 == 0) {
+                nums[i] = evens[evenIndex++];
+            } else {
+                nums[i] = odds[oddIndex++];
+            }
+        }
+        
+        return nums;
+    }
+};
