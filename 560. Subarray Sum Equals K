@@ -1,0 +1,83 @@
+Count Subarray sum Equals K
+-------------------------------------------------------------------
+Brute Force Approach
+
+Time Complexity: O(N3), where N = size of the array.
+Reason: We are using three nested loops here. Though all are not running for exactly N times, the time complexity will be approximately O(N3).
+
+Space Complexity: O(1) as we are not using any extra space.
+
+---------------------
+int findAllSubarraysWithGivenSum(vector < int > & arr, int k) {
+    int n = arr.size(); // size of the given array.
+    int cnt = 0; // Number of subarrays:
+
+    for (int i = 0 ; i < n; i++) { // starting index i
+        for (int j = i; j < n; j++) { // ending index j
+
+            // calculate the sum of subarray [i...j]
+            int sum = 0;
+            for (int K = i; K <= j; K++)
+                sum += arr[K];
+
+            // Increase the count if sum == k:
+            if (sum == k)
+                cnt++;
+        }
+    }
+    return cnt;
+
+
+Better Approach
+
+Complexity Analysis
+
+Time Complexity: O(N2), where N = size of the array.
+Reason: We are using two nested loops here. As each of them is running for exactly N times, the time complexity will be approximately O(N2).
+
+Space Complexity: O(1) as we are not using any extra space.
+
+----------------
+int n = arr.size(); // size of the given array.
+    int cnt = 0; // Number of subarrays:
+
+    for (int i = 0 ; i < n; i++) { // starting index i
+        int sum = 0;
+        for (int j = i; j < n; j++) { // ending index j
+            // calculate the sum of subarray [i...j]
+            // sum of [i..j-1] + arr[j]
+            sum += arr[j];
+
+            // Increase the count if sum == k:
+            if (sum == k)
+                cnt++;
+        }
+    }
+    return cnt;
+
+
+
+optimal code:
+
+Time Complexity: O(N) or O(N*logN) depending on which map data structure we are using, where N = size of the array.
+Reason: For example, if we are using an unordered_map data structure in C++ the time complexity will be O(N) but if we are using a map data structure, the time complexity will be O(N*logN).
+The least complexity will be O(N) as we are using a loop to traverse the array.
+---------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int subarraySum(vector<int>& arr, int k) {
+    int n = arr.size();
+    int cnt=0;
+    for(int i=0;i<n;i++){
+        int sum=0;
+        for(int j=i;j<n;j++){
+            sum+=arr[j];
+            if(sum==k){
+                cnt+=1;
+            }
+        }
+    }
+    return cnt;
+    }
+};
