@@ -1,0 +1,21 @@
+class Solution {
+public:
+    long long maxScore(vector<int>& a) {
+        long long ans=0;
+        for(int i=0;i<=a.size();i++){
+            long long l=-1,g=-1;
+            for(int j=0;j<a.size();j++){
+                if(j==i)continue;
+                if(l==-1){
+                    l=a[j];g=a[j];
+                }
+                else{
+                    l=lcm(l,a[j]);
+                    g=gcd(g,a[j]);
+                }
+            }
+            ans=max(ans,l*g);
+        }
+        return ans;
+    }
+};
