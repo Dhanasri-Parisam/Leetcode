@@ -1,0 +1,59 @@
+Map:
+---------------------------------------------------------------------
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        map<int,vector<int>>mpp;
+        for(int i=0;i<n;i++){
+            mpp[nums[i]].push_back(i);
+        }
+        for(int i=0;i<n;i++){
+            if(mpp.find(target)!=mpp.end()){
+                vector<int>& idx=mpp[target];
+                return {idx.front(),idx.back()};
+            }
+        }
+        return {-1,-1};
+    }
+};
+
+
+------------------------------------------------------------------------
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<int> ans(2, -1); 
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == target) {
+                ans[0] = i;
+                break;
+            }
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            if (nums[i] == target) {
+                ans[1] = i;
+                break;
+            }
+        }
+        return ans;
+    }
+};
+------------------------------------------------------------------------------
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        int first=-1,last=-1;
+        for(int i=0;i<n;i++){
+            if(nums[i]==target){
+                if(first==-1){
+                    first=i;//first->3  last->3 
+                }
+                last=i; // i reached 4th->first 3 last->4
+            }
+        }
+        return {first,last};
+    }
+};
