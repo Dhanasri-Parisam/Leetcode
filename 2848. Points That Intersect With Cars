@@ -1,0 +1,61 @@
+#include<set>
+class Solution {
+public:
+    int numberOfPoints(vector<vector<int>>& nums) {
+        int n=nums.size();
+        set<int> st;
+        for(int i=0;i<n;i++){
+            for(int j=nums[i][0];j<=nums[i][1];j++){ //start - end
+                st.insert(j); //stores unique
+            }
+        }
+        return st.size();
+    }
+};
+
+
+optimal:
+<=======================================================================================================================================================>
+Sorting:
+nums = [[1, 5], [3, 6], [4, 7]]
+Merging:
+
+Start with ans = [[1, 5]].
+Process [3, 6]: It overlaps with [1, 5], so merge to [1, 6].
+Process [4, 7]: It overlaps with [1, 6], so merge to [1, 7].
+Final merged intervals: ans = [[1, 7]].
+Counting Unique Points:
+
+Interval [1, 7] covers 7 - 1 + 1 = 7 points.
+<=======================================================================================================================================================>
+
+class Solution {
+public:
+    int numberOfPoints(vector<vector<int>>& nums) {
+        int n = nums.size();
+        vector<vector<int>>ans;
+        //Merge Interval Concept 56(Leetcode)
+        sort(nums.begin(),nums.end());
+        for(int i =0;i<n;i++)
+        {
+            if(ans.size()==0 || ans.back()[1]<nums[i][0])
+            {
+                ans.push_back(nums[i]);
+            }
+            else
+            {
+                ans.back()[1]=max(ans.back()[1],nums[i][1]);
+                   
+            }
+        }
+        int count = 0;
+        for(int i =0;i<ans.size();i++)
+        {
+            count = count + (ans[i][1] - ans[i][0] + 1);
+            
+        }
+        return count;
+        
+        
+    }
+};
