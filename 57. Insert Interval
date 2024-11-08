@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& a, vector<int>& b) {
+        // Step 1: Insert the interval 'b' into 'a' and sort
+        a.push_back(b);
+        sort(a.begin(), a.end());
+        
+        // Step 2: Initialize result vector to store merged intervals
+        vector<vector<int>> ans;
+        
+        // Step 3: Iterate through sorted intervals and merge overlapping ones
+        for (const auto& interval : a) {
+            // If 'ans' is empty or current interval doesn't overlap, add it
+            if (ans.empty() || interval[0] > ans.back()[1]) {
+                ans.push_back(interval);
+            } else {
+                // Merge the intervals by updating the end of the last interval in 'ans'
+                ans.back()[1] = max(ans.back()[1], interval[1]);
+            }
+        }
+        
+        return ans;
+    }
+};
