@@ -1,0 +1,29 @@
+Problem Restatement
+Given n coins, we need to arrange them into rows such that the first row has 1 coin, the second row has 2 coins, the third row has 3 coins, and so on. We want to find the maximum number of complete rows we can form.
+
+For example, if n = 8, the arrangement should look like this:
+
+Row 1: 1 coin
+Row 2: 2 coins
+Row 3: 3 coins
+Row 4: 2 coins (but only 2 coins are left, so this row is incomplete)
+The output for n = 8 should be 3 because we can complete 3 full rows with the given coins.
+-----------------------------------------------------------------------------------------------------------------
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        int l=0,r=n;
+        while(l<=r){
+            long long mid=(l+r)/2;
+            long long coins=(mid*(mid+1))/2;
+            if(coins==n){
+                return mid;
+            }else if(coins<n){
+                l=mid+1;
+            }else{
+                r=mid-1;
+            }
+        }
+        return r;
+    }
+};
