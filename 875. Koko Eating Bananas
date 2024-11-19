@@ -1,0 +1,36 @@
+class Solution {
+    int maxi(vector<int> v){
+        int large=INT_MIN;
+        int n=v.size();
+        for(int i=0;i<n;i++){
+            large=max(large,v[i]);
+        }
+        return large;
+    }
+    long long sumofhours(vector<int> v,int mid){
+        long long sum=0;
+        int n=v.size();
+        for(int i=0;i<n;i++){
+            sum+= ceil((double)(v[i]) / (double)(mid));
+        }
+        return sum;
+    }
+public:
+    int minEatingSpeed(vector<int>& v, int h) {
+        int n=v.size();
+        //apply binary search
+        int low=1,high=maxi(v);
+        while(low<=high){
+            int mid=(low+high)/2;
+            long long totalhours=sumofhours(v,mid);
+            if(totalhours<=h){
+                //if possible move to left becuase check equality
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+};
