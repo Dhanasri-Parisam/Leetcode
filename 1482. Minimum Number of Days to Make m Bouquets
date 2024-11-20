@@ -1,0 +1,42 @@
+class Solution {
+    int checkpossibility(vector<int> v,int m,int k,int mid){
+        int n=v.size();
+        int cnt=0;
+        int noOfB=0;
+        for (int i = 0; i < n; i++) {
+            if (v[i] <= mid) {
+                cnt++;
+            }
+            else {
+                noOfB += (cnt / k);
+                cnt = 0;
+            }
+        }
+        noOfB += (cnt / k);
+        return noOfB >= m;
+    }
+public:
+    int minDays(vector<int>& v, int m, int k) {
+        int n=v.size();
+        int mini=INT_MAX;
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+           mini=min(v[i],mini);
+           maxi=max(v[i],maxi);
+        }
+        //apply binary search
+        long long val = m * 1ll * k * 1ll;
+        if(val>n) return -1;
+        int low=mini,high=maxi;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(checkpossibility(v,m,k,mid)){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+};
