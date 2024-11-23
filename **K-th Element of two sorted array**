@@ -5,7 +5,6 @@ Brute force:
             
             int kthElement(vector<int> &a, vector<int>& b, int m, int n, int k) {
                 vector<int> arr3;
-            
                 //apply the merge step:
                 int i = 0, j = 0;
                 while (i < m && j < n) {
