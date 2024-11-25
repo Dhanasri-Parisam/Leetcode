@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxNumOfMarkedIndices(vector<int>&v) {
+        sort(v.begin(),v.end());
+        int i=0,n=v.size(),j=n/2,cnt=0;
+        while(i<n/2 && j<n){
+            if(v[i]*2<=v[j]){
+                i++;
+                j++;
+                cnt+=2;
+            }
+            else j++;
+        }
+        return cnt;
+    }
+};
