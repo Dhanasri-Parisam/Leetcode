@@ -4,7 +4,7 @@ public:
         int n = matrix.size();
         if (n == 0) return false; // Handle empty matrix
         int m = matrix[0].size();
-        if (m == 0) return false; // Handle matrix with empty rows
+        if (m == 0) return false;
         
         int row = 0;
         int col = m - 1; // Start from the top-right corner
