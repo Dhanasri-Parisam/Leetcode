@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        unordered_map<int, int> freqMap; 
+        for (int num : arr) {
+            freqMap[num]++;
+        }
+        unordered_set<int> freqSet; // To check for unique frequencies
+        for (const auto& pair : freqMap) {
+            if (!freqSet.insert(pair.second).second) {
+                return false; 
+            }
+        }
+
+        return true;
+    }
+};
