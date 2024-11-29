@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int countPairs(vector<int>& nums, int target) {
+        int cnt=0, n=nums.size();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(nums[i]+nums[j]<target){
+                
+                   cnt+=1;
+                }
+            }   
+        }
+        return cnt;
+
+    }
+};
+
+
+optimal:
+==========================================================
+class Solution {
+public:
+    int countPairs(vector<int>& nums, int target) {
+        const int n=nums.size();
+        sort(nums.begin(),nums.end());
+        int s,e,mid,cnt=0;
+        for(int k=0;k<n;k++){
+            s=k+1,e=n-1;
+            while(s<=e){
+                mid=s+(e-s)/2;
+                if(nums[mid]+nums[k]<target)
+                s=mid+1;
+                else 
+                e=mid-1;
+            }
+            cnt+=s-(k+1);   
+        }
+        return cnt;
+    }
+};
