@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        //which can be extracted one by one using the >> operator
+        istringstream stream(sentence);
+        string word;
+        int idx=1;
+        while(stream>>word){
+           //word = "i", word.find("burg") returns -1 → index = 2
+           if(word.find(searchWord)==0){
+             return idx;
+           }
+           idx++;
+        }
+        
+        return -1;
+    }
+};
