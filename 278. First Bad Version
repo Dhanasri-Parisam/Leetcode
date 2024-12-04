@@ -1,0 +1,28 @@
+// The API isBadVersion is defined for you.
+// bool isBadVersion(int version);
+// mid = (1 + 5) / 2 = 3.
+// isBadVersion(3) == true.
+// Update right = mid = 3.
+// mid = (1 + 3) / 2 = 2.
+// isBadVersion(2) == false.
+// Update left = mid + 1 = 3.
+// left == right == 3.
+// Return 3.
+
+
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int low=1,high=n;
+        while(low<high){
+            int mid = low + (high - low) / 2;
+            if(isBadVersion(mid)){  //standard function signature.
+                high=mid;
+            }
+            else {
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+};
