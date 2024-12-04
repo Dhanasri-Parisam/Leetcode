@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int differenceOfSums(int n, int m) {
+        vector<int> ans;
+        vector<int> non;
+        for(int i=1;i<=n;i++){
+            if(i%m==0){
+                ans.push_back(i);
+            }
+            else{
+                non.push_back(i);
+            }
+        }
+        int res = 0;
+        for (auto it : ans) {
+            res += it;
+        }
+        int res2 = 0;
+        for (auto itt : non) {
+            res2 += itt;
+        }
+        return res2 - res;
+    }
+};
