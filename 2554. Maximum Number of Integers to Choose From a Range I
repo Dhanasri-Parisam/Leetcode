@@ -1,0 +1,87 @@
+Solution 1: Two-Pointer Approach :
+Sort the banned list and use a pointer to track the banned elements.
+Iterate through [1, n] and compare each number to the current banned number.
+Skip numbers in the banned list using the pointer, and add other numbers to the sum.
+-------------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+        sort(banned.begin(), banned.end());
+        int sum = 0, res = 0, it = 0, len = banned.size();
+
+        for (int i = 1; i <= n; i++) {
+            if (it < len && banned[it] == i) {
+                while (it < len && banned[it] == i) {
+                    it++;
+                }
+            } else {
+                sum += i;
+                if (sum <= maxSum) {
+                    res++;
+                } else {
+                    return res; 
+                }
+            }
+        }
+        return res;
+    }
+};
+
+======================================================================================================
+Solution 2: Binary Search Approach 🔍
+Binary search:
+Sort the banned list for efficient lookups.
+Iterate through [1, n], and use binary search to skip banned numbers.
+Track the running sum and terminate if it exceeds maxSum.
+======================================================================================================
+class Solution {
+public:
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+        sort(banned.begin(), banned.end());
+        int sum = 0, res = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (!binary_search(banned.begin(), banned.end(), i)) { // Check banned
+                sum += i;
+                if (sum <= maxSum) {
+                    res++;
+                } else {
+                    return res; // Stop as all further sums will exceed maxSum
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+==========================================================================================================
+Solution 3: Hash Map Approach 🗂️
+Idea 💡
+Use a hash map to mark all banned numbers for quick lookup.
+Iterate through the range [1, n], and skip any number in the banned list.
+Keep a running sum, and stop if adding the current number exceeds maxSum.
+==========================================================================================================
+class Solution {
+public:
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+        unordered_map<int, int> mp;
+        for (int i : banned) {
+            mp[i]++;
+        }
+
+        int sum = 0, res = 0;
+        for (int i = 1; i <= n; i++) {
+            if (!mp[i]) { // If not banned
+                sum += i;
+                if (sum <= maxSum) {
+                    res++;
+                } else {
+                    return res; // Stop as remaining values will also exceed maxSum
+                }
+            }
+        }
+        return res;
+    }
+};
