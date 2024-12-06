@@ -1,3 +1,4 @@
+=================================================================================================
 Solution 1: Two-Pointer Approach :
 Sort the banned list and use a pointer to track the banned elements.
 Iterate through [1, n] and compare each number to the current banned number.
