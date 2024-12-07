@@ -1,0 +1,29 @@
+class Solution {
+    bool allocate_candy(vector<int> nums,long long mid,long long k){
+        long long cnt=0;
+        for(int i=0;i<nums.size();i++){
+            if (mid == 0) return false;
+            cnt += (nums[i] / mid);
+            if(cnt>=k){
+                return true;
+            }
+        }
+        return false;
+    }
+public:
+    int maximumCandies(vector<int>& nums, long long k) {
+        long long totalnums = accumulate(nums.begin(), nums.end(), 0LL);
+        if(totalnums<k) return 0;
+        long long low=1,high=*max_element(nums.begin(),nums.end());
+        while(low<=high){
+            long long mid=(low+high)/2;
+            if(allocate_candy(nums,mid,k)){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+};
