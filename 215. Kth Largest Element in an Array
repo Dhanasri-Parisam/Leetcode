@@ -1,3 +1,6 @@
+Time complexity-nth element-O(n)   & paritial sort-> O(klogk+(n−k))
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
