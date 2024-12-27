@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minElement(vector<int>& nums) {
+        int res = INT_MAX;
+        for (int a : nums) {
+            int cur = 0;
+            while (a > 0) {
+                cur += a % 10;
+                a /= 10;
+            }
+            res = min(res, cur);
+        }
+        return res;
+    }
+};
