@@ -1,0 +1,42 @@
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        int cnt = 0;
+        ListNode* mover = head;
+
+        while (mover != nullptr) {
+            cnt++;
+            mover = mover->next;
+        }
+
+        int mid = cnt / 2;
+        mover = head;
+        while (mid--) {
+            mover = mover->next;
+        }
+        return mover; 
+    }
+};
+
+
+
+----------------------------------------------------------------------------------------
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        int cnt = 0;
+        ListNode* mover = head;
+
+        while (mover != nullptr) {
+            cnt++;
+            mover = mover->next;
+        }
+
+        int mid = cnt / 2;
+        mover = head;
+        while (mid--) {
+            mover = mover->next;
+        }
+        return mover; 
+    }
+};
