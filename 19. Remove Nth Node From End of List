@@ -1,0 +1,130 @@
+/*
+Here is the steps to solve this problem:
+
+1.   fast pointer moves to n steps 
+2.   slow and fast pointer moves one - one step forward 
+3.   that moment fast will reaches end of the list slow will reach deleting before
+4.   simple remove the link make sure slow pointer stores next next -> del next
+5.   edge cases :
+-------------------------------------------------------------
+1.Removing the Only Node (Single-Element List)
+    Input: head = [1], n = 1
+    Output: [] (nullptr)
+    n == 1, fast becomes nullptr, and we return head->next, which is nullptr.
+
+    2.
+    Removing the Head (First Node)
+    Input: head = [1, 2, 3, 4, 5], n = 5
+    Output: [2, 3, 4, 5]
+    Reasoning: 
+    When fast moves n steps, it becomes nullptr.
+    This means we need to delete the head and return head->next.
+3.
+    Removing the (Last Node)
+    Input: head = [1, 2, 3, 4, 5], n = 1
+    Output: [1, 2, 3, 4]
+    Reasoning:
+
+    fast moves ahead by n steps.
+    The slow pointer stops at the second last node (4), so we correctly remove 5.
+
+4.
+    List with (Two Nodes, Removing Any Node)
+    Case 1: head = [1, 2], n = 2 → Output: [2] (Head Removed)
+    Case 2: head = [1, 2], n = 1 → Output: [1] (Last Node Removed)
+    Reasoning:
+
+    Both cases work properly by adjusting head or linking nodes correctly.
+*/
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+    if (head == NULL) {
+        return NULL;
+    }
+    
+    ListNode* fast = head;
+ 
+    for(int i = 0 ; i < n ; i++ ){
+        fast = fast -> next;
+    }
+
+    if(fast == nullptr){
+       ListNode* newHead = head->next;
+        delete head;
+        return newHead;
+    }
+
+    ListNode* slow = head;
+
+    while(fast -> next != nullptr){
+        slow = slow -> next;
+        fast = fast -> next;
+    }
+    
+    // Delete the Nth node from the end
+    ListNode* delNode = slow -> next;
+    slow -> next = slow -> next -> next;
+    delete (delNode);
+    return head;
+    }
+};
+--------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if (head == NULL) {
+        return NULL;
+    }
+    int cnt = 0;
+    ListNode* temp = head;
+
+    // Count the number of nodes in the linked list
+    while (temp != NULL) {
+        cnt++;
+        temp = temp->next;
+    }
+
+    // If N equals the total number of
+    // nodes, delete the head
+    if (cnt == n) {
+        ListNode* newhead = head->next;
+        delete (head);
+        return newhead;
+    }
+
+    // Calculate the position of the node to delete (res)
+    int res = cnt - n;
+    temp = head;
+
+    // Traverse to the node just before the one to delete
+    while (temp != NULL) {
+        res--;
+        if (res == 0) {
+            break;
+        }
+        temp = temp->next;
+    }
+
+    // Delete the Nth node from the end
+    ListNode* delNode = temp->next;
+    temp->next = temp->next->next;
+    delete (delNode);
+    return head;
+    }
+};
+
+
+
+--------------------------------------------------------------------------------------------------------------------
