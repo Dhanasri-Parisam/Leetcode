@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxAdjacentDistance(vector<int>& nums) {
+        int n = nums.size();
+        if (n < 2) return 0; // Edge case: No adjacent elements
+
+        int maxi = INT_MIN; 
+
+        // Compute adjacent differences
+        for (int i = 1; i < n; i++) {
+            int res = abs(nums[i] - nums[i - 1]); // Take absolute difference
+            maxi = max(maxi, res);
+        } 
+
+        // Consider circular difference (last and first element)
+        int circularDiff = abs(nums[n - 1] - nums[0]); // Absolute difference for circular case
+        maxi = max(maxi, circularDiff);
+
+        return maxi;
+    }
+};
