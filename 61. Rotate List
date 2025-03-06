@@ -9,7 +9,7 @@ public:
         while (tail->next) {
             tail = tail->next;
             len++;
-        }
+        } 
 
         // Step 2: Connect tail to head (make it circular)
         tail->next = head;
