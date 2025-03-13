@@ -1,0 +1,25 @@
+1. POW(X,N);
+
+
+2. approch:
+--------------------------------------------------------------------------------------------------------
+class Solution {
+public:
+    double myPow(double x, int n) {
+        long long pow = abs((long long)n);
+        double ans = 1.0;
+
+        while(pow > 0){
+            //chexk pow digit it is odd reduce by 1 mul to ans
+            if(pow % 2 == 1){
+               ans *= x;
+               pow = pow - 1;
+            }
+            else{
+                x = x * x;
+                pow /= 2;
+            }
+        }
+        return (n < 0) ? (1.0 / ans) : ans;
+    }
+};
