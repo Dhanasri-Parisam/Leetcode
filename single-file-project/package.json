@@ -1,0 +1,25 @@
+{
+  "name": "single-file-project",
+  "version": "1.0.0",
+  "description": "A simple TypeScript project with a single entry point.",
+  "main": "src/app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/single-file-project.git"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yourusername/single-file-project/issues"
+  },
+  "homepage": "https://github.com/yourusername/single-file-project#readme"
+}
